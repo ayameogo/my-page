@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Annouchka Yameogo-Stanzler</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg2: #f7f5f1; --bg3: #eeebe5;
+      --border: #e4e0d8; --text: #111111; --text-dim: #9a938b; --text-mid: #3c3835;
+      --accent: #a0724a;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --radius: 4px; --max: 1120px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg); background-image: radial-gradient(circle, #dedad4 1px, transparent 1px); background-size: 28px 28px; color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-weight: 400; letter-spacing: -0.02em; }
+    h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.1; }
+    h2 { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; }
+    h3 { font-size: clamp(1rem, 1.8vw, 1.25rem); font-weight: 500; }
+    p { color: var(--text-mid); }
+    strong { color: var(--text); font-weight: 600; }
+    em { font-style: italic; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 10px; border-radius: 2px; background: #fff; }
+
+    /* Image gallery */
+    .cs-imagery { margin-top: 40px; }
+    .cs-imagery-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .cs-image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .cs-image-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+    .cs-image-slot { position: relative; aspect-ratio: 16/10; background: var(--bg2); border: 1.5px dashed var(--border); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
+    .cs-image-slot:hover { border-color: var(--accent); }
+    .cs-image-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-image-slot .slot-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-dim); }
+    .cs-image-slot .slot-placeholder span { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .cs-image-slot .slot-placeholder svg { opacity: 0.4; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; } .logo-mark { font-family: var(--font-sans); font-size: 1.45rem; font-weight: 900; letter-spacing: 0.12em; color: var(--text); line-height: 1; } 
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.05em; color: var(--text-dim); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; }
+    .nav-cta { font-size: 13px; font-weight: 600; padding: 8px 20px; border: 1.5px solid var(--border); border-radius: var(--radius); color: var(--text-mid); transition: all 0.2s; }
+    .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text-dim); }
+    .mobile-menu { display: none; position: fixed; inset: 64px 0 0 0; background: var(--bg); z-index: 99; padding: 28px 24px; flex-direction: column; border-top: 1px solid var(--border); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-serif); font-size: 1.5rem; color: var(--text-mid); padding: 18px 0; border-bottom: 1px solid var(--border); }
+
+    /* Page header */
+    .page-header { background: #fff; padding: 140px 0 72px; border-bottom: 1px solid var(--border); }
+    .page-header h1 { color: var(--text); margin-bottom: 20px; }
+    .page-header p { font-size: 1.0625rem; max-width: 600px; }
+
+    /* Case studies */
+    .cs-section { background: #fff; padding: 72px 0 100px; }
+    .cs-list { display: flex; flex-direction: column; gap: 3px; }
+
+    .cs-card { background: #fff; border: 1px solid var(--border); overflow: hidden; }
+    .cs-card:hover { background: var(--bg2); } .cs-card.open .cs-body { background: #fff; }
+    .cs-header { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 28px; padding: 36px 40px; cursor: pointer; transition: background 0.15s; }
+    .cs-card.open .cs-header { background: var(--bg2); border-bottom: 1px solid var(--border); }
+    .cs-num { font-family: var(--font-serif); font-size: 0.85rem; color: var(--text-dim); letter-spacing: 0.06em; }
+    .cs-company { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 7px; }
+    .cs-title-text { font-family: var(--font-serif); font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--text); margin-bottom: 6px; }
+    .cs-subtitle { font-size: 0.875rem; color: var(--text-dim); }
+    .cs-toggle { display: flex; align-items: center; gap: 16px; }
+    .cs-tags { display: flex; gap: 6px; }
+    .cs-expand { width: 34px; height: 34px; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--text-dim); transition: all 0.2s; flex-shrink: 0; line-height: 1; }
+    .cs-card.open .cs-expand { border-color: var(--accent); color: var(--accent); transform: rotate(45deg); }
+
+    .cs-body { display: none; padding: 48px 40px 52px; }
+    .cs-card.open .cs-body { display: block; }
+
+    .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-bottom: 48px; }
+    .cs-section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .cs-text { font-size: 0.9375rem; color: var(--text-mid); line-height: 1.8; }
+    .cs-text + .cs-text { margin-top: 14px; }
+
+    .cs-metrics-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .cs-metrics { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 12px; }
+    .metric-chip { background: var(--bg3); border: 1px solid var(--border); padding: 18px 16px; }
+    .metric-value { font-family: var(--font-serif); font-size: 1.9rem; color: var(--text); line-height: 1; margin-bottom: 7px; }
+    .metric-label { font-size: 0.75rem; color: var(--text-dim); line-height: 1.45; }
+
+    .cs-quote { margin-top: 32px; padding: 22px 28px; border-left: 2px solid var(--accent); background: var(--bg2); }
+    .cs-quote p { font-family: var(--font-serif); font-style: italic; font-size: 0.9375rem; color: var(--text-mid); line-height: 1.75; }
+    .cs-quote cite { display: block; margin-top: 10px; font-size: 0.78rem; color: var(--text-dim); font-style: normal; font-weight: 600; letter-spacing: 0.06em; }
+
+    .cs-signal { margin-top: 36px; padding: 24px; background: var(--bg3); border: 1px solid var(--border); display: flex; gap: 16px; align-items: flex-start; }
+    .cs-signal-icon { font-size: 1rem; opacity: 0.6; flex-shrink: 0; padding-top: 2px; }
+    .cs-signal-text { font-size: 0.875rem; color: var(--text-mid); font-style: italic; line-height: 1.65; }
+
+    /* Footer */
+    footer { background: #fff; padding: 56px 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start; }
+    .footer-name { font-family: var(--font-serif); font-size: 1.2rem; color: var(--text); margin-bottom: 5px; }
+    .footer-role { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 18px; }
+    .footer-links { display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a { font-size: 0.875rem; color: var(--text-dim); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-tagline { font-family: var(--font-serif); font-style: italic; font-size: 0.9rem; color: var(--text-dim); line-height: 1.7; }
+    .footer-contact-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .footer-email { font-size: 1rem; color: var(--text-mid); margin-bottom: 18px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 13px 26px; background: var(--text); color: var(--bg); border-radius: var(--radius); transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.82; }
+    .footer-copy { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-dim); }
+
+    @media (max-width: 960px) {
+      .container { padding: 0 24px; }
+      .nav-inner { padding: 0 24px; }
+      .cs-header { grid-template-columns: 48px 1fr 34px; gap: 16px; padding: 24px 20px; }
+      .cs-body { padding: 32px 20px 40px; }
+      .cs-grid { grid-template-columns: 1fr; gap: 36px; }
+      .cs-tags { display: none; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="logo-mark">AYS</div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="capabilities.html">Expertise</a></li>
+    </ul>
+    <a href="mailto:annouchka@gmail.com" class="nav-cta">Get in Touch</a>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="work.html" onclick="toggleMenu()">Work</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="capabilities.html" onclick="toggleMenu()">Expertise</a>
+  <a href="mailto:annouchka@gmail.com" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">Impact</p>
+    <h1>Four companies changed.<br>Not just designed.</h1>
+    <p style="margin-top:20px; font-size:1.05rem;">Each engagement delivered measurable business outcomes — not just better interfaces. Platform bets that paid off. Orgs that outlasted the projects. AI frameworks that scaled.</p>
+  </div>
+</div>
+
+<!-- Case Studies -->
+<div class="cs-section">
+  <div class="container">
+    <div class="cs-list">
+
+      <!-- CS 01 -->
+      <div class="cs-card" id="cs0">
+        <div class="cs-header" onclick="toggle(0)">
+          <span class="cs-num">CS 01</span>
+          <div>
+            <div class="cs-company">ServiceTitan · 2025</div>
+            <h3 class="cs-title-text">From Assist to Atlas</h3>
+            <div class="cs-subtitle">100% of product teams on one AI framework. +84% adoption growth. Agentic UX with human approval gates built in from day one.</div>
+          </div>
+          <div class="cs-toggle">
+            <div class="cs-tags">
+              <span class="tag">AI Strategy</span>
+              <span class="tag">Agentic UX</span>
+            </div>
+            <div class="cs-expand">+</div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-grid">
+            <div>
+              <p class="cs-section-title">The Challenge</p>
+              <p class="cs-text">AI capabilities were emerging independently across ServiceTitan's product teams — creating real risk of fragmented experiences, inconsistent patterns, and duplicated work. There was no shared model for how AI should interact with users, how transparency should be handled, or how trust should be built at the user level.</p>
+              <p class="cs-text">The deeper problem: building individual AI features is relatively easy. Building a <strong>framework</strong> that scales across 7 product domains, earns user trust, and holds quality at every touchpoint — that's a design infrastructure problem.</p>
+            </div>
+            <div>
+              <p class="cs-section-title">The Approach</p>
+              <p class="cs-text">Design led a structured evolution across four phases. Phase 1 established the platform infrastructure (Titan Intelligence). Phase 2 — the design-led breakthrough — delivered the <strong>Assist Framework</strong>: reusable interaction patterns (conversational prompts, insight cards, recommended actions, confirmations) delivered for the company hackathon within two months.</p>
+              <p class="cs-text">Phase 3 introduced <strong>Atlas</strong> — a named AI assistant that personifies intelligence for users. The key insight validated by user research: "When it doesn't have a name, it's not a natural interaction." Framework-first thinking prevented fragmentation. Phase 4 maps the north star: proactive agentic experiences with human approval always in the loop.</p>
+            </div>
+          </div>
+          <p class="cs-metrics-label">Impact</p>
+          <div class="cs-metrics">
+            <div class="metric-chip"><div class="metric-value">80%</div><div class="metric-label">Goal accomplishment rate in Adaptive Capacity</div></div>
+            <div class="metric-chip"><div class="metric-value">674</div><div class="metric-label">Invoice reviews completed in first 28 days</div></div>
+            <div class="metric-chip"><div class="metric-value">+84%</div><div class="metric-label">Growth period-over-period for AI feature adoption</div></div>
+            <div class="metric-chip"><div class="metric-value">7–12%</div><div class="metric-label">Activation rate and growing across tenants</div></div>
+            <div class="metric-chip"><div class="metric-value">100%</div><div class="metric-label">Product squads using the Assist framework</div></div>
+            <div class="metric-chip"><div class="metric-value">~1 day</div><div class="metric-label">To assemble an Atlas interaction via Anvil + MCP</div></div>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal-icon">◈</span>
+            <p class="cs-signal-text"><strong>Leadership signal:</strong> Created the interaction framework that allowed AI to scale across the platform. Framework-first approach prevented fragmentation. Designed governance into agent UX — human approval gates, no autonomous merges, clear confirmation flows — from day one.</p>
+          </div>
+          <div class="cs-imagery">
+            <p class="cs-imagery-label">From the Work</p>
+            <div class="cs-image-grid">
+              <div class="cs-image-slot"><img src="cs01-1.jpg" alt="Atlas framework" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs01-1.jpg</span></div></div>
+              <div class="cs-image-slot"><img src="cs01-2.jpg" alt="Atlas interaction" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs01-2.jpg</span></div></div>
+              <div class="cs-image-slot"><img src="cs01-3.jpg" alt="Atlas agentic UX" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs01-3.jpg</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CS 02 -->
+      <div class="cs-card" id="cs1">
+        <div class="cs-header" onclick="toggle(1)">
+          <span class="cs-num">CS 02</span>
+          <div>
+            <div class="cs-company">ServiceTitan · 2024</div>
+            <h3 class="cs-title-text">Global Search</h3>
+            <div class="cs-subtitle">78K users. 92% click-through. Secured CTO investment by reframing a UX problem as platform infrastructure — and the retrieval layer for AI agents.</div>
+          </div>
+          <div class="cs-toggle">
+            <div class="cs-tags">
+              <span class="tag">Platform Strategy</span>
+              <span class="tag">Search</span>
+            </div>
+            <div class="cs-expand">+</div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-grid">
+            <div>
+              <p class="cs-section-title">The Challenge</p>
+              <p class="cs-text">ServiceTitan's search reflected database architecture, not user intent. Users were required to select an object type before searching — forced to think like the database. Research revealed why this was broken: 67% search for invoices after opening a customer; 62% after opening a job. Users aren't searching for objects — they're searching for <strong>outcomes</strong>.</p>
+              <p class="cs-text">Customer verbatim: <em>"Search functionality is sub par"</em> and <em>"Searching for customers and appointments is very time consuming."</em> The model was fundamentally wrong.</p>
+            </div>
+            <div>
+              <p class="cs-section-title">The Approach</p>
+              <p class="cs-text">Design reframed the problem as a platform investment, not a UI refresh. The solution: unified global search with cross-entity results, hierarchical grouping, recently viewed shortcuts, typo tolerance, rich result previews, and quick action affordances — powered by Elasticsearch.</p>
+              <p class="cs-text">Strategic expansion: search became the <strong>retrieval layer for Atlas agents</strong>. Without robust, trustworthy search, agentic systems can't function — hallucination risk rises. Design leadership secured CTO funding by framing search as platform capability, not a feature request. That reframing was the pivotal move.</p>
+            </div>
+          </div>
+          <p class="cs-metrics-label">Impact</p>
+          <div class="cs-metrics">
+            <div class="metric-chip"><div class="metric-value">78K+</div><div class="metric-label">Active users on Global Search</div></div>
+            <div class="metric-chip"><div class="metric-value">92%</div><div class="metric-label">Click-through rate (target: 85%)</div></div>
+            <div class="metric-chip"><div class="metric-value">67%</div><div class="metric-label">Of searches via Global Search vs. legacy (target: 50%)</div></div>
+            <div class="metric-chip"><div class="metric-value">0.16s</div><div class="metric-label">Median time-to-result</div></div>
+            <div class="metric-chip"><div class="metric-value">4.5 / 5</div><div class="metric-label">Enterprise Hub rating from 154+ customers</div></div>
+            <div class="metric-chip"><div class="metric-value">6,250+</div><div class="metric-label">Tenants using Global Search as default</div></div>
+          </div>
+          <div class="cs-quote">
+            <p>"Global Search is a game-changer for efficiency. It dramatically reduced the number of clicks I need to find what I'm looking for. I no longer am required to specify the type of data I'm searching for."</p>
+            <cite>— Angela Kump, Bonney Plumbing</cite>
+          </div>
+          <div class="cs-imagery">
+            <p class="cs-imagery-label">From the Work</p>
+            <div class="cs-image-grid">
+              <div class="cs-image-slot"><img src="cs02-1.jpg" alt="Global Search UI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs02-1.jpg</span></div></div>
+              <div class="cs-image-slot"><img src="cs02-2.jpg" alt="Search results" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs02-2.jpg</span></div></div>
+              <div class="cs-image-slot"><img src="cs02-3.jpg" alt="Search metrics" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs02-3.jpg</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CS 03 -->
+      <div class="cs-card" id="cs2">
+        <div class="cs-header" onclick="toggle(2)">
+          <span class="cs-num">CS 03</span>
+          <div>
+            <div class="cs-company">ServiceTitan · 2021–Present</div>
+            <h3 class="cs-title-text">Scaling a Global Design Org</h3>
+            <div class="cs-subtitle">97% team engagement. 60% women in design leadership. ~736h annual efficiency gained by rewiring how the org works — not just what tools it uses.</div>
+          </div>
+          <div class="cs-toggle">
+            <div class="cs-tags">
+              <span class="tag">Org Design</span>
+              <span class="tag">Leadership</span>
+            </div>
+            <div class="cs-expand">+</div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-grid">
+            <div>
+              <p class="cs-section-title">The Challenge</p>
+              <p class="cs-text">The mandate at ServiceTitan: build a world-class design organization capable of operating at public-company standards while maintaining the speed and craft of a high-growth SaaS product. The org needed to span Product Design, UX Research, Design Systems, Content Design, Visual Design, DesignOps, and Agent Experience — across multiple time zones with major teams in Los Angeles and Armenia.</p>
+              <p class="cs-text">IPO readiness added a layer of governance complexity: investor scrutiny, predictable execution requirements, and the need to demonstrate operating discipline at every level of the org simultaneously.</p>
+            </div>
+            <div>
+              <p class="cs-section-title">The Approach</p>
+              <p class="cs-text">Built the org with a clear operating model: a 1:10 design-to-engineering ratio, quarterly OKR cadence, structured review and governance frameworks, and AI fluency embedded into leveling expectations. Director-level leadership was developed internally — a deliberate signal about talent investment.</p>
+              <p class="cs-text">The AI transformation of the org itself was equally important. Designers moved from specification writers to production contributors: 100% Figma Make adoption, 100% Cursor adoption, AI Guild training cohorts, 25% of UXD tickets AI-assisted. The org didn't just use AI — it <strong>rewired how design works</strong>. ~736 hours of annual efficiency gain documented.</p>
+            </div>
+          </div>
+          <p class="cs-metrics-label">Impact</p>
+          <div class="cs-metrics">
+            <div class="metric-chip"><div class="metric-value">70+</div><div class="metric-label">Person org built across global locations</div></div>
+            <div class="metric-chip"><div class="metric-value">100%</div><div class="metric-label">Director promotions from internal development</div></div>
+            <div class="metric-chip"><div class="metric-value">60%</div><div class="metric-label">Women in design leadership</div></div>
+            <div class="metric-chip"><div class="metric-value">97%</div><div class="metric-label">Team engagement — all-time record, +10pts above company</div></div>
+            <div class="metric-chip"><div class="metric-value">94%</div><div class="metric-label">Employee Satisfaction Index</div></div>
+            <div class="metric-chip"><div class="metric-value">~736h</div><div class="metric-label">Annual efficiency gain from AI operating model</div></div>
+          </div>
+          <div class="cs-signal">
+            <span class="cs-signal-icon">◈</span>
+            <p class="cs-signal-text"><strong>Leadership signal:</strong> Operating model redesign, not tool adoption. Rewired how design works — designers from specification writers to production contributors. Built culture of ownership and AI fluency embedded at every level of the career ladder.</p>
+          </div>
+          <div class="cs-imagery">
+            <p class="cs-imagery-label">From the Work</p>
+            <div class="cs-image-grid two-col">
+              <div class="cs-image-slot"><img src="cs03-1.jpg" alt="Org chart or team" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs03-1.jpg</span></div></div>
+              <div class="cs-image-slot"><img src="cs03-2.jpg" alt="Operating model" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs03-2.jpg</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CS 04 -->
+      <div class="cs-card" id="cs3">
+        <div class="cs-header" onclick="toggle(3)">
+          <span class="cs-num">CS 04</span>
+          <div>
+            <div class="cs-company">LegalZoom · 2015–2021</div>
+            <h3 class="cs-title-text">LZRED — The LegalZoom Redesign</h3>
+            <div class="cs-subtitle">Six-year platform transformation. $10B+ valuation at IPO. End-to-end redesign of products, brand, and operating model — delivered on time and ahead of public markets scrutiny.</div>
+          </div>
+          <div class="cs-toggle">
+            <div class="cs-tags">
+              <span class="tag">IPO</span>
+              <span class="tag">Platform Redesign</span>
+            </div>
+            <div class="cs-expand">+</div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-grid">
+            <div>
+              <p class="cs-section-title">The Challenge</p>
+              <p class="cs-text">By late 2019, LegalZoom was carrying significant platform debt. 58% of traffic was mobile, but the bounce rate on content pages hit 73% — and checkout abandonment was high. The product lacked pricing transparency, had too many upsells, and the site reflected years of accumulated inconsistency: multiple checkout flows to maintain, outdated visual language, and a user experience that had drifted far from what customers actually needed.</p>
+              <p class="cs-text">Two deadlines made this non-negotiable: new LegalZoom commercials were set to launch in February 2021 — and the IPO was around the corner in spring 2021. The redesign had to ship with both.</p>
+            </div>
+            <div>
+              <p class="cs-section-title">The Approach</p>
+              <p class="cs-text">Design led the pitch internally. A small cross-functional team — 3 designers, a Director of Product Design, a Product Marketer, and a PM — spent three weeks in a conference room running quick provocations anchored in existing research: customer journeys, established personas, prior usability testing. The board approved the end-to-end prototype by May.</p>
+              <p class="cs-text">Execution spanned four phases over 12 months. The scope was significant: new visual identity and brand architecture, a new design system (Glo) built on atomic principles, 100+ product and pricing pages, 8,000+ content pages, five major questionnaires, a unified global checkout (consolidating five separate flows into one), and a new email design system. 80% of the design and engineering team was dedicated to LZRED — while the rest of the business kept moving.</p>
+              <p class="cs-text">COVID hit mid-project. Operations moved fully virtual. Engineers were borrowed from other initiatives and hired offshore to protect the timeline. Design decisions were made intentionally and quickly — testing on key pages only, avoiding major copy changes that could affect package mix, keeping the IA stable to de-risk delivery. Every tradeoff was deliberate.</p>
+            </div>
+          </div>
+          <p class="cs-metrics-label">Results — Delivered on Time Across All Four Phases</p>
+          <div class="cs-metrics">
+            <div class="metric-chip"><div class="metric-value">1.5%</div><div class="metric-label">LLC conversion lift, overview page through checkout</div></div>
+            <div class="metric-chip"><div class="metric-value">13%</div><div class="metric-label">Conversion lift on pages not optimized in years</div></div>
+            <div class="metric-chip"><div class="metric-value">73s→99s</div><div class="metric-label">Session duration on learning pages</div></div>
+            <div class="metric-chip"><div class="metric-value">16.7→4.6s</div><div class="metric-label">Desktop page load speed improvement</div></div>
+            <div class="metric-chip"><div class="metric-value">78→92</div><div class="metric-label">Accessibility score on learning pages</div></div>
+            <div class="metric-chip"><div class="metric-value">+3–4%</div><div class="metric-label">Questionnaire starts on top business and personal pages</div></div>
+            <div class="metric-chip"><div class="metric-value">+50%</div><div class="metric-label">Developer delivery speed on new pages</div></div>
+            <div class="metric-chip"><div class="metric-value">IPO</div><div class="metric-label">LegalZoom went public shortly after launch</div></div>
+          </div>
+          <div class="cs-signal" style="margin-top:32px;">
+            <span class="cs-signal-icon">◈</span>
+            <p class="cs-signal-text"><strong>Leadership signal:</strong> Pitched the initiative, secured executive and board alignment, and delivered a company-wide platform overhaul — on time, through COVID, under IPO pressure. Every phase shipped. Every target met or exceeded. The product that went public was the product design built.</p>
+          </div>
+          <div class="cs-imagery">
+            <p class="cs-imagery-label">From the Work</p>
+            <div class="cs-image-grid">
+              <div class="cs-image-slot"><img src="cs04-1.jpg" alt="LZRED homepage" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs04-1.jpg</span></div></div>
+              <div class="cs-image-slot"><img src="cs04-2.jpg" alt="LZRED product pages" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs04-2.jpg</span></div></div>
+              <div class="cs-image-slot"><img src="cs04-3.jpg" alt="LZRED checkout" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="slot-placeholder"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 15l5-5 4 4 3-3 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>cs04-3.jpg</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name">Annouchka Yameogo-Stanzler</div>
+        <div class="footer-role">Global VP, Experience Design</div>
+        <div class="footer-links">
+          <a href="index.html">← Home</a>
+          <a href="about.html">→ About</a>
+          <a href="capabilities.html">→ Expertise</a>
+          <a href="https://www.linkedin.com/in/annouchkayameogo/" target="_blank">↗ LinkedIn</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-tagline">"Speed without quality is noise. Quality without speed is irrelevant. The discipline is holding both."</p>
+      </div>
+      <div>
+        <div class="footer-contact-label">Let's Connect</div>
+        <div class="footer-email"><a href="mailto:annouchka@gmail.com">annouchka@gmail.com</a></div>
+        <a href="https://www.linkedin.com/in/annouchkayameogo/" target="_blank" class="btn-primary">Connect on LinkedIn →</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Annouchka Yameogo-Stanzler. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  function toggle(i) {
+    const card = document.getElementById('cs' + i);
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.cs-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) {
+      card.classList.add('open');
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

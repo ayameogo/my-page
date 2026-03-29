@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annouchka Yameogo-Stanzler — Global VP, Experience Design</title>
+  <style>
+    /* ─── Reset & Variables ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff;
+      --bg2: #f7f5f1;
+      --bg3: #eeebe5;
+      --border: #e4e0d8;
+      --text: #111111;
+      --text-dim: #9a938b;
+      --text-mid: #3c3835;
+      --accent: #a0724a;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --radius: 4px;
+      --max: 1120px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg); background-image: radial-gradient(circle, #dedad4 1px, transparent 1px); background-size: 28px 28px; color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Type ──────────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-weight: 400; letter-spacing: -0.02em; }
+    h1 { font-family: var(--font-serif); font-size: clamp(2.6rem, 5vw, 4.4rem); line-height: 1.08; }
+    h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.18; }
+    h3 { font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 500; line-height: 1.3; }
+    p { color: var(--text-mid); }
+    strong { color: var(--text); font-weight: 600; }
+
+    /* ─── Layout ────────────────────────────────────────────── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+
+    /* ─── Nav ───────────────────────────────────────────────── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; } .logo-mark { font-family: var(--font-sans); font-size: 1.45rem; font-weight: 900; letter-spacing: 0.12em; color: var(--text); line-height: 1; } 
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.05em; color: var(--text-dim); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; }
+    .nav-cta { font-size: 13px; font-weight: 600; padding: 8px 20px; border: 1.5px solid var(--border); border-radius: var(--radius); color: var(--text-mid); transition: all 0.2s; }
+    .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text-dim); }
+    .mobile-menu { display: none; position: fixed; inset: 64px 0 0 0; background: var(--bg); z-index: 99; padding: 32px 40px; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-serif); font-size: 1.5rem; color: var(--text-mid); padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu a:hover { color: var(--text); }
+
+    /* ─── Buttons ───────────────────────────────────────────── */
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 28px; background: var(--text); color: var(--bg); border-radius: var(--radius); transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.82; }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 13px 28px; border: 1.5px solid var(--border); color: var(--text-mid); border-radius: var(--radius); transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--text); color: var(--text); }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border); padding: 5px 11px; border-radius: 2px; background: var(--bg2); }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; border-bottom: 1px solid var(--border); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 100px; align-items: center; }
+    .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+    .hero-title { color: var(--text); margin-bottom: 28px; }
+    .hero-tagline { font-family: var(--font-serif); font-style: italic; color: var(--text-mid); font-size: 1.15rem; line-height: 1.7; margin-bottom: 36px; max-width: 520px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ─── Profile card ──────────────────────────────────────── */
+    .profile-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .profile-photo { width: 100%; aspect-ratio: 4/5; background: var(--bg3); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .profile-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .profile-photo-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--text-dim); text-align: center; padding: 24px; }
+    .profile-photo-placeholder svg { opacity: 0.35; }
+    .profile-photo-placeholder span { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .profile-info { padding: 24px; }
+    .profile-name { font-family: var(--font-serif); font-size: 1.05rem; color: var(--text); margin-bottom: 4px; }
+    .profile-role { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.04em; margin-bottom: 16px; }
+    .profile-langs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .profile-lang { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ─── Capability anchors ────────────────────────────────── */
+    #capabilities-home { padding: 100px 0; border-bottom: 1px solid var(--border); }
+    .cap-home-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 48px; }
+    .cap-home-item { padding: 40px 36px; border: 1px solid var(--border); background: var(--bg); transition: background 0.2s; cursor: pointer; }
+    .cap-home-item:hover { background: var(--bg2); }
+    .cap-home-num { font-family: var(--font-serif); font-size: 0.9rem; color: var(--text-dim); margin-bottom: 20px; }
+    .cap-home-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+    .cap-home-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.65; margin-bottom: 24px; }
+    .cap-home-link { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+    /* ─── Testimonials ──────────────────────────────────────── */
+    #testimonials { padding: 100px 0; border-bottom: 1px solid var(--border); }
+    .t-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+    .t-header h2 { color: var(--text); }
+    .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .t-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; }
+    .t-quote-mark { font-family: var(--font-serif); font-size: 3rem; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 8px; }
+    .t-text { font-family: var(--font-serif); font-style: italic; font-size: 0.9375rem; color: var(--text-mid); line-height: 1.75; flex: 1; margin-bottom: 20px; }
+    .t-author { font-size: 0.78rem; font-weight: 700; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; align-items: start; }
+    .footer-name { font-family: var(--font-serif); font-size: 1.3rem; color: var(--text); margin-bottom: 6px; }
+    .footer-role { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 20px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 0.875rem; color: var(--text-dim); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-tagline { font-family: var(--font-serif); font-style: italic; font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; }
+    .footer-contact-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .footer-email { font-size: 1rem; color: var(--text-mid); margin-bottom: 20px; }
+    .footer-email a:hover { color: var(--accent); }
+    .footer-copy { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-dim); }
+
+    /* ─── Mobile ────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .container { padding: 0 24px; }
+      .nav-inner { padding: 0 24px; }
+      .mobile-menu { padding: 28px 24px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .profile-card { max-width: 360px; }
+      .cap-home-grid { grid-template-columns: 1fr; }
+      .t-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .t-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="logo-mark">AYS</div></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="work.html">Impact</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="capabilities.html">Expertise</a></li>
+    </ul>
+    <a href="mailto:annouchka@gmail.com" class="nav-cta">Get in Touch</a>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="work.html" onclick="toggleMenu()">Work</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="capabilities.html" onclick="toggleMenu()">Expertise</a>
+  <a href="mailto:annouchka@gmail.com" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- ─── Hero ─────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-eyebrow">Executive Portfolio</p>
+        <h1 class="hero-title">Global VP,<br>Experience Design</h1>
+        <p class="hero-tagline">Enterprise design executive who builds AI interaction frameworks, global organizations, and operating models that let products scale without losing craft.</p>
+        <div class="hero-tags">
+          <span class="tag">Built and led orgs up to 70</span>
+          <span class="tag">Operated through IPO</span>
+          <span class="tag">AI strategy &amp; agentic product</span>
+          <span class="tag">Enterprise SaaS · FinTech · LegalTech</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="work.html" class="btn-primary">View Case Studies →</a>
+          <a href="https://www.linkedin.com/in/annouchkayameogo/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <!-- Profile card -->
+      <div class="profile-card">
+        <div class="profile-photo" id="profilePhoto">
+          <img src="photo.jpg" alt="Annouchka Yameogo-Stanzler" onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='flex';">
+          <div class="profile-photo-placeholder" id="photoPlaceholder" style="display:none;">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="24" r="12" stroke="#9b9189" stroke-width="1.5"/>
+              <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#9b9189" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Save photo.jpg here to display</span>
+          </div>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Annouchka Yameogo-Stanzler</div>
+          <div class="profile-role">Global VP, Experience Design · Los Angeles, CA</div>
+          <div class="profile-langs">
+            <span class="profile-lang">FR</span>
+            <span style="color:var(--border)">·</span>
+            <span class="profile-lang">EN</span>
+            <span style="color:var(--border)">·</span>
+            <span class="profile-lang">IT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Capability anchors ────────────────────────────────────── -->
+<section id="capabilities-home">
+  <div class="container">
+    <p class="section-label">Core Expertise</p>
+    <h2 style="color:var(--text); max-width:520px;">Twenty years at the intersection of product, people, and platform.</h2>
+    <div class="cap-home-grid">
+      <a href="work.html" class="cap-home-item">
+        <div class="cap-home-num">01</div>
+        <div class="cap-home-title">AI Platform Leadership</div>
+        <div class="cap-home-desc">Built the AI interaction framework powering 7 product domains at ServiceTitan — from design-led hackathon concept to production in months.</div>
+        <div class="cap-home-link">View case study →</div>
+      </a>
+      <a href="work.html" class="cap-home-item">
+        <div class="cap-home-num">02</div>
+        <div class="cap-home-title">Org Building at Scale</div>
+        <div class="cap-home-desc">Scaled design orgs from 4→45 at LegalZoom and led a 70+ person global org through IPO and sustained public-company cadence at ServiceTitan.</div>
+        <div class="cap-home-link">View case study →</div>
+      </a>
+      <a href="work.html" class="cap-home-item">
+        <div class="cap-home-num">03</div>
+        <div class="cap-home-title">Revenue-Driving Design</div>
+        <div class="cap-home-desc">1.5% LLC conversion lift. 13% uplift on long-neglected pages. 50% faster developer delivery. A platform redesign shipped on time, through COVID, ahead of IPO.</div>
+        <div class="cap-home-link">View case study →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Testimonials ──────────────────────────────────────────── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="t-header">
+      <div>
+        <p class="section-label">What Colleagues Say</p>
+        <h2 style="color:var(--text);">Trusted at the<br>executive level.</h2>
+      </div>
+      <a href="https://www.linkedin.com/in/annouchkayameogo/" target="_blank" rel="noopener" class="btn-secondary">See LinkedIn ↗</a>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-quote-mark">"</div>
+        <p class="t-text">Annouchka operates at a level that's rare — she holds the design vision, manages executive complexity, and still finds the moments that matter in the actual product. She's the kind of leader who makes everyone around her better.</p>
+        <span class="t-author">Chief Product Officer, ServiceTitan</span>
+      </div>
+      <div class="t-card">
+        <div class="t-quote-mark">"</div>
+        <p class="t-text">She doesn't just build beautiful products — she builds the systems, the teams, and the operating models that make beautiful products possible at scale. That's the harder thing to do, and she does it consistently.</p>
+        <span class="t-author">Chief Technology Officer, ServiceTitan</span>
+      </div>
+      <div class="t-card">
+        <div class="t-quote-mark">"</div>
+        <p class="t-text">Annouchka brought a level of strategic clarity to design leadership that I rarely see. She translated ambiguous company goals into clear design direction — and delivered measurable results every quarter.</p>
+        <span class="t-author">VP Product, ServiceTitan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name">Annouchka Yameogo-Stanzler</div>
+        <div class="footer-role">Global VP, Experience Design</div>
+        <div class="footer-links">
+          <a href="work.html">→ Case Studies</a>
+          <a href="about.html">→ About</a>
+          <a href="capabilities.html">→ Expertise</a>
+          <a href="https://www.linkedin.com/in/annouchkayameogo/" target="_blank" rel="noopener">↗ LinkedIn</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-tagline">"Speed without quality is noise. Quality without speed is irrelevant. The discipline is holding both."</p>
+      </div>
+      <div>
+        <div class="footer-contact-label">Let's Connect</div>
+        <div class="footer-email"><a href="mailto:annouchka@gmail.com">annouchka@gmail.com</a></div>
+        <a href="https://www.linkedin.com/in/annouchkayameogo/" target="_blank" rel="noopener" class="btn-primary">Connect on LinkedIn →</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Annouchka Yameogo-Stanzler. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
