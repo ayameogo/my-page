@@ -349,7 +349,7 @@ Return ONLY valid JSON (no markdown):
 {"scores":{"<dim_id>":{"score":0-10,"summary":"2 specific observational sentences referencing Anvil2 components","checks":[{"label":"specific check","status":"pass|fail|warn","note":"one sentence"}]}},"overall":0-10,"top_recommendation":"Most impactful change referencing exact Anvil2 component or pattern.","signal":"One sentence on overall design system alignment.","dims_scored":["array of dim ids scored"]}`;
 
   try{
-    const res=await fetch('/api/chat',{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:imgType||'image/png',data:imgB64}},{type:'text',text:`Evaluate this UI screenshot.\n${ctx?'Context: '+ctx+'\n':''}\nScore these dimensions: ${dims.join(', ')}\n\nCriteria:\n${criteria}\n\nReturn only JSON.`}]}]})
