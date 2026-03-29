@@ -8,18 +8,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#F5F6F8;color:#1A1A2E;min-height:100vh}
-
 .wrap{display:grid;grid-template-columns:320px 1fr;min-height:100vh}
-
 .left{padding:1.5rem;border-right:1px solid rgba(0,0,0,0.08);display:flex;flex-direction:column;gap:1rem;overflow-y:auto;background:#fff}
-
 .logo-row{display:flex;align-items:center;gap:8px;margin-bottom:2px}
 .anvil-mark{width:28px;height:28px;background:linear-gradient(135deg,#1A6AFF,#5B8FFF);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .tool-name{font-size:15px;font-weight:600;color:#1A1A2E}
 .tool-sub{font-size:11px;color:#6B7280;line-height:1.5}
-
 .fl{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9CA3AF;margin-bottom:5px}
 
+/* Input mode tabs */
+.input-tabs{display:flex;gap:0;background:#F3F4F6;padding:3px;border-radius:9px;margin-bottom:2px}
+.itab{flex:1;padding:7px 4px;font-size:11px;font-weight:500;text-align:center;border-radius:7px;cursor:pointer;color:#6B7280;transition:all 0.15s;border:none;background:none;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:4px}
+.itab.active{background:#fff;color:#1A1A2E;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.itab svg{flex-shrink:0}
+
+/* Screenshot upload */
 .dz{border:1.5px dashed #D1D5DB;border-radius:10px;padding:1.4rem 1rem;text-align:center;cursor:pointer;background:#F9FAFB;transition:all 0.15s;position:relative}
 .dz:hover{border-color:#1A6AFF;background:#EEF4FF}
 .dz.has{padding:0;overflow:hidden;border-style:solid;border-color:#1A6AFF}
@@ -30,20 +33,43 @@ body{font-family:'Inter',sans-serif;background:#F5F6F8;color:#1A1A2E;min-height:
 .swap-btn{position:absolute;bottom:7px;right:7px;background:rgba(26,106,255,0.88);color:#fff;font-size:10px;padding:3px 9px;border-radius:5px;cursor:pointer;font-weight:500}
 #fi{display:none}
 
+/* Figma panel */
+.figma-panel{display:none;flex-direction:column;gap:10px}
+.figma-panel.visible{display:flex}
+.screenshot-panel{display:flex;flex-direction:column;gap:10px}
+.screenshot-panel.hidden{display:none}
+
+.url-input-wrap{position:relative}
+.url-input{width:100%;border:1px solid #E5E7EB;border-radius:8px;padding:9px 11px 9px 34px;font-family:'Inter',sans-serif;font-size:12px;color:#1A1A2E;background:#fff;transition:border-color 0.15s;outline:none}
+.url-input:focus{border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.1)}
+.url-input::placeholder{color:#9CA3AF}
+.url-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#9CA3AF;pointer-events:none}
+
+.figma-hint{background:#F0F7FF;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;font-size:11px;color:#1E40AF;line-height:1.6}
+.figma-hint strong{font-weight:600}
+
+.flow-desc{width:100%;border:1px solid #E5E7EB;border-radius:8px;padding:9px 11px;font-family:'Inter',sans-serif;font-size:12px;color:#1A1A2E;background:#fff;resize:none;line-height:1.5;min-height:80px;transition:border-color 0.15s;outline:none}
+.flow-desc:focus{border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.1)}
+.flow-desc::placeholder{color:#9CA3AF}
+
+/* Interaction dims */
+.int-dims{display:flex;flex-direction:column;gap:4px}
+.int-dim{display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #E5E7EB;border-radius:7px;background:#fff}
+.int-dim-dot{width:6px;height:6px;border-radius:50%;background:#1A6AFF;flex-shrink:0}
+.int-dim-name{font-size:11px;font-weight:500;color:#374151;flex:1}
+.int-dim-tag{font-size:9px;font-weight:600;padding:2px 6px;border-radius:100px;background:#EDE9FE;color:#5B21B6}
+
 textarea{width:100%;border:1px solid #E5E7EB;border-radius:8px;padding:9px 11px;font-family:'Inter',sans-serif;font-size:12px;color:#1A1A2E;background:#fff;resize:none;line-height:1.5;min-height:60px;transition:border-color 0.15s}
 textarea:focus{outline:none;border-color:#1A6AFF;box-shadow:0 0 0 3px rgba(26,106,255,0.1)}
 textarea::placeholder{color:#9CA3AF}
-
 .mode-tabs{display:flex;gap:4px;background:#F3F4F6;padding:3px;border-radius:9px}
 .mtab{flex:1;padding:6px 4px;font-size:11px;font-weight:500;text-align:center;border-radius:7px;cursor:pointer;color:#6B7280;transition:all 0.15s;border:none;background:none;font-family:'Inter',sans-serif}
 .mtab.active{background:#fff;color:#1A1A2E;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
-
 .cat-group{display:flex;flex-direction:column;gap:3px}
 .cat-header{display:flex;align-items:center;justify-content:space-between;padding:5px 0 3px}
 .cat-title{font-size:11px;font-weight:600;color:#374151}
 .cat-count{font-size:10px;color:#9CA3AF}
 .cat-dims{display:flex;flex-direction:column;gap:3px}
-
 .dim{display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #E5E7EB;border-radius:7px;cursor:pointer;transition:all 0.12s;background:#fff;user-select:none}
 .dim.on{border-color:#1A6AFF;background:#EEF4FF}
 .dim.on .dn{color:#1246A0}
@@ -58,24 +84,18 @@ textarea::placeholder{color:#9CA3AF}
 .dtag.found{background:#FEF3C7;color:#92400E}
 .dtag.atlas{background:#DCFCE7;color:#166534}
 .dtag.a11y{background:#FCE7F3;color:#9D174D}
-
-.sel-row{display:flex;align-items:center;justify-content:space-between;padding:2px 0}
 .sel-link{font-size:10px;color:#1A6AFF;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;padding:0}
 .sel-link:hover{text-decoration:underline}
-
 .go{width:100%;padding:12px;background:#1A6AFF;color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;margin-top:auto}
 .go:hover{background:#1459E6;box-shadow:0 2px 8px rgba(26,106,255,0.3)}
 .go:disabled{background:#E5E7EB;color:#9CA3AF;cursor:not-allowed;box-shadow:none}
-
 .right{display:flex;flex-direction:column;background:#F5F6F8}
 .rhead{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;background:#fff;border-bottom:1px solid rgba(0,0,0,0.08)}
 .rhead-left{display:flex;align-items:center;gap:8px}
 .atlas-dot{width:22px;height:22px;background:#1A6AFF;border-radius:6px;display:flex;align-items:center;justify-content:center}
 .rhead-title{font-size:14px;font-weight:600;color:#1A1A2E}
 .rhead-badge{font-size:10px;color:#6B7280;background:#F3F4F6;padding:3px 9px;border-radius:100px;border:1px solid #E5E7EB}
-
 .rcontent{flex:1;padding:1.5rem;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
-
 .empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:3rem}
 .eg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;width:100%;max-width:320px}
 .eg-card{background:#fff;border-radius:9px;padding:10px;border:1px solid #E5E7EB}
@@ -83,19 +103,16 @@ textarea::placeholder{color:#9CA3AF}
 .eg-bar{height:4px;border-radius:2px;background:#E5E7EB;margin-bottom:3px}
 .empty-t{font-size:13px;font-weight:600;color:#1A1A2E}
 .empty-s{font-size:11px;color:#9CA3AF;line-height:1.6;max-width:260px}
-
 .ld{display:none;align-items:center;gap:8px;font-size:11px;color:#6B7280;padding:4px 0}
 .ld.on{display:flex}
 .spin{width:14px;height:14px;border:1.5px solid #E5E7EB;border-top-color:#1A6AFF;border-radius:50%;animation:spin .65s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
 .overall-card{background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
 .oc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px}
 .oc-label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#9CA3AF;margin-bottom:3px}
 .oc-num{font-size:28px;font-weight:700;line-height:1}
 .oc-signal{font-size:11px;color:#6B7280;line-height:1.5;max-width:210px;text-align:right}
 .oc-bottom{font-size:10px;color:#9CA3AF;margin-top:8px;padding-top:8px;border-top:1px solid #F3F4F6}
-
 .scard{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:11px 13px;box-shadow:0 1px 2px rgba(0,0,0,0.03)}
 .sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .sc-name{font-size:11px;font-weight:600;color:#1A1A2E;line-height:1.3}
@@ -109,19 +126,20 @@ textarea::placeholder{color:#9CA3AF}
 .sc-fill.mi{background:#D97706}
 .sc-fill.lo{background:#DC2626}
 .sc-text{font-size:11px;color:#6B7280;line-height:1.55}
-
 .gc-block{margin-top:8px;padding-top:8px;border-top:1px solid #F3F4F6;display:flex;flex-direction:column;gap:5px}
 .gc-row{display:flex;align-items:flex-start;gap:6px;font-size:10px;color:#6B7280;line-height:1.5}
 .gc-pill{font-size:9px;font-weight:700;padding:1px 6px;border-radius:3px;flex-shrink:0;margin-top:1px;text-transform:uppercase;letter-spacing:0.04em}
 .gc-pill.pass{background:#DCFCE7;color:#166534}
 .gc-pill.fail{background:#FEE2E2;color:#991B1B}
 .gc-pill.warn{background:#FEF3C7;color:#92400E}
-
 .rec-card{background:#EEF4FF;border:1px solid rgba(26,106,255,0.2);border-radius:10px;padding:12px 14px}
 .rec-top{display:flex;align-items:center;gap:7px;margin-bottom:6px}
 .rec-icon{width:18px;height:18px;background:#1A6AFF;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .rec-title{font-size:10px;font-weight:700;color:#1246A0;letter-spacing:0.06em;text-transform:uppercase}
 .rec-text{font-size:11px;color:#1246A0;line-height:1.55;opacity:0.9}
+
+/* Figma result badge */
+.figma-badge{display:inline-flex;align-items:center;gap:5px;background:#1E1E1E;color:#fff;font-size:10px;font-weight:500;padding:3px 9px;border-radius:100px;margin-bottom:2px}
 
 .rfooter{padding:.875rem 1.5rem;border-top:1px solid rgba(0,0,0,0.06);background:#fff;display:flex;align-items:center;justify-content:space-between}
 .rfooter-txt{font-size:10px;color:#9CA3AF}
@@ -129,7 +147,6 @@ textarea::placeholder{color:#9CA3AF}
 </style>
 </head>
 <body>
-
 <div class="wrap">
   <!-- LEFT -->
   <div class="left">
@@ -143,48 +160,94 @@ textarea::placeholder{color:#9CA3AF}
         </div>
         <span class="tool-name">Anvil2 Design Evaluator</span>
       </div>
-      <div class="tool-sub">Score any UI against the full Anvil2 design system — components, AI patterns, foundations, and accessibility</div>
+      <div class="tool-sub">Score any UI against the full Anvil2 design system — components, AI patterns, foundations, accessibility, and interactions</div>
     </div>
 
+    <!-- Input mode: Screenshot vs Figma -->
     <div>
-      <div class="fl">Screenshot</div>
-      <div class="dz" id="dz" onclick="document.getElementById('fi').click()">
-        <div class="dz-icon">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
-            <path d="M1 10l4-3.5 3 2.5 2.5-2 5 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
-            <circle cx="11" cy="6.5" r="1.5" stroke="currentColor" stroke-width="1.2"/>
-          </svg>
+      <div class="fl" style="margin-bottom:7px">Evaluate</div>
+      <div class="input-tabs">
+        <button class="itab active" id="tab-screenshot" onclick="switchInputMode('screenshot')">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="2" width="9" height="7" rx="1" stroke="currentColor" stroke-width="1.1"/><path d="M1 7l2.5-2 2 1.5 1.5-1.5 3 2.5" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          Screenshot
+        </button>
+        <button class="itab" id="tab-figma" onclick="switchInputMode('figma')">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1.5" y="1" width="3.5" height="3.5" rx="1" stroke="currentColor" stroke-width="1.1"/><rect x="1.5" y="6.5" width="3.5" height="3.5" rx="1" stroke="currentColor" stroke-width="1.1"/><rect x="6" y="1" width="3.5" height="3.5" rx="1" stroke="currentColor" stroke-width="1.1"/><circle cx="7.75" cy="7.75" r="1.75" stroke="currentColor" stroke-width="1.1"/></svg>
+          Figma Prototype
+        </button>
+      </div>
+    </div>
+
+    <!-- Screenshot panel -->
+    <div class="screenshot-panel" id="screenshot-panel">
+      <div>
+        <div class="fl">Screenshot</div>
+        <div class="dz" id="dz" onclick="document.getElementById('fi').click()">
+          <div class="dz-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 10l4-3.5 3 2.5 2.5-2 5 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="11" cy="6.5" r="1.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <div class="dz-t">Drop any UI screenshot</div>
+          <div class="dz-h">Web, mobile, AI interfaces, forms, dashboards</div>
         </div>
-        <div class="dz-t">Drop any UI screenshot</div>
-        <div class="dz-h">Web, mobile, AI interfaces, forms, dashboards</div>
+        <input type="file" id="fi" accept="image/*" onchange="handleFile(event)">
       </div>
-      <input type="file" id="fi" accept="image/*" onchange="handleFile(event)">
-    </div>
-
-    <div>
-      <div class="fl">Context <span style="font-weight:400;color:#9CA3AF;text-transform:none;letter-spacing:0">(optional)</span></div>
-      <textarea id="ctx" placeholder="e.g. Job booking form for field service dispatchers, enterprise B2B SaaS"></textarea>
-    </div>
-
-    <div>
-      <div class="fl" style="margin-bottom:7px">Evaluation mode</div>
-      <div class="mode-tabs">
-        <button class="mtab active" onclick="setMode('quick',this)">Quick (4)</button>
-        <button class="mtab" onclick="setMode('full',this)">Full audit</button>
-        <button class="mtab" onclick="setMode('ai',this)">AI-focused</button>
+      <div>
+        <div class="fl">Context <span style="font-weight:400;color:#9CA3AF;text-transform:none;letter-spacing:0">(optional)</span></div>
+        <textarea id="ctx" placeholder="e.g. Job booking form for field service dispatchers, enterprise B2B SaaS"></textarea>
       </div>
-    </div>
-
-    <div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
-        <div class="fl" style="margin-bottom:0">Dimensions</div>
-        <div style="display:flex;gap:10px">
-          <button class="sel-link" onclick="selectAll()">All</button>
-          <button class="sel-link" onclick="clearAll()">None</button>
+      <div>
+        <div class="fl" style="margin-bottom:7px">Evaluation mode</div>
+        <div class="mode-tabs">
+          <button class="mtab active" onclick="setMode('quick',this)">Quick (4)</button>
+          <button class="mtab" onclick="setMode('full',this)">Full audit</button>
+          <button class="mtab" onclick="setMode('ai',this)">AI-focused</button>
         </div>
       </div>
-      <div id="dims-container" style="display:flex;flex-direction:column;gap:9px"></div>
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+          <div class="fl" style="margin-bottom:0">Dimensions</div>
+          <div style="display:flex;gap:10px">
+            <button class="sel-link" onclick="selectAll()">All</button>
+            <button class="sel-link" onclick="clearAll()">None</button>
+          </div>
+        </div>
+        <div id="dims-container" style="display:flex;flex-direction:column;gap:9px"></div>
+      </div>
+    </div>
+
+    <!-- Figma panel -->
+    <div class="figma-panel" id="figma-panel">
+      <div>
+        <div class="fl">Figma prototype URL</div>
+        <div class="url-input-wrap">
+          <svg class="url-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4 1.5 1.5 4 1.5 7S4 12.5 7 12.5 12.5 10 12.5 7 10 1.5 7 1.5z" stroke="#9CA3AF" stroke-width="1.2"/><path d="M1.5 7h11M7 1.5C5.5 3 4.5 4.8 4.5 7s1 4 2.5 5.5M7 1.5C8.5 3 9.5 4.8 9.5 7s-1 4-2.5 5.5" stroke="#9CA3AF" stroke-width="1.2"/></svg>
+          <input type="url" class="url-input" id="figma-url" placeholder="https://figma.com/proto/..." />
+        </div>
+      </div>
+
+      <div class="figma-hint">
+        <strong>How this works:</strong> Paste your Figma prototype link and describe the user flow. Claude will evaluate the interaction design against Anvil2 patterns — flow logic, transitions, feedback states, and error handling.
+      </div>
+
+      <div>
+        <div class="fl">Describe the flow</div>
+        <textarea class="flow-desc" id="figma-flow" placeholder="e.g. A technician booking flow — user selects a job type, picks a date and time, confirms booking. Should handle unavailable slots and show confirmation."></textarea>
+      </div>
+
+      <div>
+        <div class="fl">User & context</div>
+        <textarea id="figma-ctx" style="min-height:48px" placeholder="e.g. Field service dispatcher, enterprise SaaS, high-frequency daily use"></textarea>
+      </div>
+
+      <div>
+        <div class="fl" style="margin-bottom:7px">Interaction dimensions</div>
+        <div class="int-dims">
+          <div class="int-dim"><div class="int-dim-dot"></div><span class="int-dim-name">Flow clarity & navigation logic</span><span class="int-dim-tag">Flow</span></div>
+          <div class="int-dim"><div class="int-dim-dot" style="background:#7C3AED"></div><span class="int-dim-name">Transition & animation appropriateness</span><span class="int-dim-tag">Motion</span></div>
+          <div class="int-dim"><div class="int-dim-dot" style="background:#0891B2"></div><span class="int-dim-name">Feedback & loading states</span><span class="int-dim-tag">States</span></div>
+          <div class="int-dim"><div class="int-dim-dot" style="background:#DC2626"></div><span class="int-dim-name">Error handling & recovery paths</span><span class="int-dim-tag">Errors</span></div>
+        </div>
+      </div>
     </div>
 
     <button class="go" id="go" onclick="run()">Evaluate against Anvil2 →</button>
@@ -195,10 +258,7 @@ textarea::placeholder{color:#9CA3AF}
     <div class="rhead">
       <div class="rhead-left">
         <div class="atlas-dot">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M3 10L6 2.5L9 10" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M4 7.5h4" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 10L6 2.5L9 10" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 7.5h4" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>
         </div>
         <span class="rhead-title">Evaluation results</span>
       </div>
@@ -211,12 +271,12 @@ textarea::placeholder{color:#9CA3AF}
           <div class="eg-card"><div class="eg-label">Components</div><div class="eg-bar" style="width:75%"></div><div class="eg-bar" style="width:50%"></div></div>
           <div class="eg-card"><div class="eg-label">AI patterns</div><div class="eg-bar" style="width:60%"></div><div class="eg-bar" style="width:80%"></div></div>
           <div class="eg-card"><div class="eg-label">Accessibility</div><div class="eg-bar" style="width:40%"></div><div class="eg-bar" style="width:65%"></div></div>
-          <div class="eg-card"><div class="eg-label">Foundations</div><div class="eg-bar" style="width:85%"></div><div class="eg-bar" style="width:45%"></div></div>
-          <div class="eg-card"><div class="eg-label">Content</div><div class="eg-bar" style="width:55%"></div><div class="eg-bar" style="width:70%"></div></div>
-          <div class="eg-card"><div class="eg-label">Patterns</div><div class="eg-bar" style="width:70%"></div><div class="eg-bar" style="width:40%"></div></div>
+          <div class="eg-card"><div class="eg-label">Flow</div><div class="eg-bar" style="width:85%"></div><div class="eg-bar" style="width:45%"></div></div>
+          <div class="eg-card"><div class="eg-label">Motion</div><div class="eg-bar" style="width:55%"></div><div class="eg-bar" style="width:70%"></div></div>
+          <div class="eg-card"><div class="eg-label">Errors</div><div class="eg-bar" style="width:70%"></div><div class="eg-bar" style="width:40%"></div></div>
         </div>
-        <div class="empty-t">Upload a screenshot to evaluate</div>
-        <div class="empty-s">Works on any UI — forms, dashboards, AI interfaces, mobile views, or design system components</div>
+        <div class="empty-t">Upload a screenshot or paste a Figma URL</div>
+        <div class="empty-s">Evaluates static UI or prototype interaction flows against the full Anvil2 design system</div>
       </div>
       <div class="ld" id="ld"><div class="spin"></div><span id="ldmsg">Analyzing against Anvil2...</span></div>
       <div id="rout" style="display:none;flex-direction:column;gap:10px"></div>
@@ -230,24 +290,24 @@ textarea::placeholder{color:#9CA3AF}
 </div>
 
 <script>
-let imgB64=null,imgType=null,currentMode='quick';
+let imgB64=null,imgType=null,currentMode='quick',inputMode='screenshot';
 
 const ALL_DIMS={
   transparency:{label:'Transparency & trust signals',cat:'AI & Agentic',tag:'ai',criteria:`Assist V1: "Show the work — trust bridges communicate WHAT, WHY, and HOW behind AI reasoning." Anvil2 Embedded AI: AI mark (double star) must be used — NOT single sparkles, TI logo, or sparkle emojis. Users must be aware when interaction involves AI. Check: Is the AI mark present and correct? Are AI-generated outputs labeled? Is reasoning visible? Are actions auditable?`},
-  automation:{label:'Progressive automation clarity',cat:'AI & Agentic',tag:'ai',criteria:`Assist V1 guardrails. Agentic = user sets goals, AI executes, user approves. Non-agentic = AI assists, user executes. DO NOT: auto-complete steps without confirmation, send outputs without user review, use fixed workflows ignoring context. DO: show AI-generated options, support user override, gate irreversible actions with ConfirmationCard.`},
+  automation:{label:'Progressive automation clarity',cat:'AI & Agentic',tag:'ai',criteria:`Assist V1 guardrails. Agentic = user sets goals, AI executes, user approves. Non-agentic = AI assists, user executes. DO NOT: auto-complete steps without confirmation, send outputs without user review, use fixed workflows. DO: show AI-generated options, support user override, gate irreversible actions with ConfirmationCard.`},
   agenthandoff:{label:'Human–AI handoff & escalation',cat:'AI & Agentic',tag:'ai',criteria:`AXDS: Are handoffs based on user intent and context? Is it clear when AI is acting vs user is in control? Confirmation and recap states present? Does the UI prevent irreversible autonomous actions? Atlas ConfirmationCard pattern before AI executes. Fallback messaging if escalation fails.`},
-  mentalmodel:{label:'Mental model alignment (AXDS)',cat:'AI & Agentic',tag:'ai',criteria:`AXDS three models: Outcome ("What is this helping me do?"), Causal ("How does it work?"), Interactional ("How do I interact?"). Score whether UI makes agent purpose clear, reveals system logic, and feels natural and empathetic.`},
-  embeddedai:{label:'Embedded AI pattern compliance',cat:'AI & Agentic',tag:'ai',criteria:`Anvil2 Embedded AI: Is the double-star AI mark used (not single sparkle)? Primary gradient mark in most cases, monochrome only when contrast requires. AI mark sizing follows icon sizes (16x16 in buttons). Atlas = conversational UI; Embedded AI = in-app components. Accessibility: contrast, keyboard, touch targets for AI indicators.`},
+  mentalmodel:{label:'Mental model alignment (AXDS)',cat:'AI & Agentic',tag:'ai',criteria:`AXDS three models: Outcome ("What is this helping me do?"), Causal ("How does it work?"), Interactional ("How do I interact?"). Score whether UI makes agent purpose clear, reveals system logic, and feels natural.`},
+  embeddedai:{label:'Embedded AI pattern compliance',cat:'AI & Agentic',tag:'ai',criteria:`Anvil2 Embedded AI: Is the double-star AI mark used (not single sparkle)? Primary gradient mark in most cases, monochrome only when contrast requires. Atlas = conversational UI; Embedded AI = in-app components. Accessibility: contrast, keyboard, touch targets for AI indicators.`},
   atlaspatterns:{label:'Atlas component patterns',cat:'Atlas (Chat UI)',tag:'atlas',criteria:`Anvil2 @servicetitan/anvil2-ext-atlas: ChatWindow, Header, Footer, Content composition. MarkdownMessage for rich AI responses. NotificationCard for proactive insights. SingleRecommendationCard/MultipleRecommendationCard for AI action selection. ConfirmationCard before execution. SuggestionList for guided prompts. Toolbox (like/dislike/copy/retry). "Ask Atlas" footer input present.`},
-  components:{label:'Component usage & selection',cat:'Foundations & Components',tag:'core',criteria:`Anvil2 component library: Are correct components used? Button for actions, Link for navigation, Dialog for interruptions, Drawer for flyouts (slides from right), Toast for transient feedback, Alert for persistent notifications. Form elements (TextField, SelectField, Checkbox, Radio, Switch) used correctly. DataTable for complex data. Card/EditCard/InteractiveCard — right card type chosen?`},
-  consistency:{label:'Visual consistency & tokens',cat:'Foundations & Components',tag:'found',criteria:`Anvil2 foundations: No hardcoded hex values, spacing, or typography — use tokens. Spacing scale followed. Typography tokens used. Colors from the Anvil2 system. Designs linked to library, no overrides. Extend only when a repeated cross-team need exists that cannot be addressed by current system tools.`},
-  typography:{label:'Typography & content hierarchy',cat:'Foundations & Components',tag:'found',criteria:`Anvil2 Typography + Content guidance: Type hierarchy clear? Correct size/weight for headings vs body vs labels. Actionable language (verb-first CTAs). Sentence case in UI labels. Active voice. Clear, inclusive language. Confirmation messages for destructive actions. Date/time displayed consistently.`},
-  layout:{label:'Layout, spacing & structure',cat:'Foundations & Components',tag:'found',criteria:`Anvil2 Layout and Spacing: Page component as foundation. Flex/Grid used. Spacing scale consistent. SideNav for navigation. Toolbar for action grouping. ToolbarFilters for data filtering. Breadcrumbs for hierarchy. Pagination for large datasets. Drawer slides from right. Layout columns defined.`},
-  forms:{label:'Form design & validation',cat:'Patterns',tag:'core',criteria:`Anvil2 Forms pattern: FieldLabel with required indicators and help tooltips. FieldMessage for hint, error, description. Pre-fill whenever possible. Input usage minimal. TextField, TextArea, NumberField, DateField, SelectField, ComboBox used correctly. Validation error states present. Confirmation messages for irreversible submissions.`},
-  errors:{label:'Error, empty & feedback states',cat:'Patterns',tag:'core',criteria:`Anvil2 Errors & Warnings, Empty States, Notifications: Empty states explain purpose and next step. Toast for transient action feedback (triggered by user action). Alert for persistent notifications. Error recovery paths present. Skeleton for loading states. Spinner for processing. Progress bars for multi-step tasks. Stepper for wizard flows.`},
-  data:{label:'Data display & tables',cat:'Patterns',tag:'core',criteria:`Anvil2 DataTable: sorting, filtering, pagination, row selection, expansion. ToolbarFilters for data filtering. Chip for status/metadata labels. Badge for attention indicators. Segmented controls for view switching. OverflowText for truncation. ListView for selectable lists. Correct pagination patterns.`},
-  a11y:{label:'Accessibility fundamentals',cat:'Accessibility',tag:'a11y',criteria:`Anvil2 Accessibility: Semantic markup and ARIA roles. Labels and CTAs clear and descriptive. Color contrast WCAG AA. Focus states visible. Touch targets adequate. Dynamic content changes announced (live regions). Images have alt text. Animations respect prefers-reduced-motion. Keyboard accessibility. Icon-only buttons have accessible labels.`},
-  inclusive:{label:'Inclusive & accessible language',cat:'Accessibility',tag:'a11y',criteria:`Anvil2 Language & Inclusivity: Clear, plain language. No jargon. Avoid ableist terms. Consistent terminology. Helpful error messages that guide recovery. Labels match visible text. Word list compliance. Heading hierarchy logical and navigable.`},
+  components:{label:'Component usage & selection',cat:'Foundations & Components',tag:'core',criteria:`Anvil2 component library: Are correct components used? Button for actions, Link for navigation, Dialog for interruptions, Drawer for flyouts, Toast for transient feedback, Alert for persistent notifications. Form elements used correctly. DataTable for complex data. Right card type chosen?`},
+  consistency:{label:'Visual consistency & tokens',cat:'Foundations & Components',tag:'found',criteria:`Anvil2 foundations: No hardcoded hex values, spacing, or typography — use tokens. Spacing scale followed. Typography tokens used. Colors from Anvil2 system. No overrides.`},
+  typography:{label:'Typography & content hierarchy',cat:'Foundations & Components',tag:'found',criteria:`Anvil2 Typography + Content: Type hierarchy clear? Correct size/weight. Actionable language (verb-first CTAs). Sentence case. Active voice. Clear, inclusive language. Confirmation messages for destructive actions.`},
+  layout:{label:'Layout, spacing & structure',cat:'Foundations & Components',tag:'found',criteria:`Anvil2 Layout and Spacing: Page component as foundation. Flex/Grid used. Spacing scale consistent. SideNav for navigation. Toolbar for action grouping. ToolbarFilters for data filtering. Breadcrumbs for hierarchy. Pagination for large datasets.`},
+  forms:{label:'Form design & validation',cat:'Patterns',tag:'core',criteria:`Anvil2 Forms: FieldLabel with required indicators. FieldMessage for hint/error/description. Pre-fill whenever possible. Input usage minimal. Correct form components used. Validation error states present. Confirmation messages for irreversible submissions.`},
+  errors:{label:'Error, empty & feedback states',cat:'Patterns',tag:'core',criteria:`Anvil2 Errors & Warnings, Empty States: Empty states explain purpose and next step. Toast for transient action feedback. Alert for persistent notifications. Error recovery paths present. Skeleton for loading. Spinner for processing. Progress bars for multi-step tasks.`},
+  data:{label:'Data display & tables',cat:'Patterns',tag:'core',criteria:`Anvil2 DataTable: sorting, filtering, pagination, row selection. ToolbarFilters for filtering. Chip for status labels. Badge for attention indicators. Segmented controls for view switching. OverflowText for truncation.`},
+  a11y:{label:'Accessibility fundamentals',cat:'Accessibility',tag:'a11y',criteria:`Anvil2 Accessibility: Semantic markup and ARIA roles. Labels and CTAs clear. Color contrast WCAG AA. Focus states visible. Touch targets adequate. Dynamic content changes announced. Images have alt text. Keyboard accessibility.`},
+  inclusive:{label:'Inclusive & accessible language',cat:'Accessibility',tag:'a11y',criteria:`Anvil2 Language & Inclusivity: Clear, plain language. No jargon. Consistent terminology. Helpful error messages. Labels match visible text. Heading hierarchy logical.`},
 };
 
 const MODES={
@@ -256,10 +316,28 @@ const MODES={
   ai:['transparency','automation','agenthandoff','mentalmodel','embeddedai','atlaspatterns'],
 };
 
+const INTERACTION_DIMS = {
+  flow: {label:'Flow clarity & navigation logic', criteria:`Anvil2 patterns for flow: Is the user journey clear and logical? Are navigation patterns (Breadcrumbs, SideNav, Stepper) used appropriately for the flow complexity? Is progress visible (Stepper for multi-step)? Can users easily understand where they are and where they can go? Are dead ends avoided? Does the flow match the user's mental model of the task? Is back navigation supported? Are destructive actions (delete, submit) placed appropriately in the flow?`},
+  motion: {label:'Transition & animation appropriateness', criteria:`Anvil2 motion principles: Are transitions purposeful and not decorative? Do animations help users understand state changes (Drawer sliding in, Dialog appearing)? Is motion speed appropriate — not too fast to miss, not too slow to annoy? Does motion respect prefers-reduced-motion? Are loading transitions handled (Skeleton before content, Spinner for processing)? Do transitions reinforce the spatial model (e.g. Drawer from right = detail panel)?`},
+  feedback: {label:'Feedback & loading states', criteria:`Anvil2 feedback patterns: Is every user action acknowledged? Toast for immediate action confirmation (triggered by user action, not system). Alert for persistent status. Skeleton placeholders while content loads. Spinner for processing states. Progress Bar for quantifiable progress. Are success, warning, and error states distinct and clear? Is feedback timely — does the user know something happened?`},
+  errorhandling: {label:'Error handling & recovery paths', criteria:`Anvil2 Errors & Warnings pattern: Are errors explained clearly with recovery paths (not just "something went wrong")? Are inline validation errors shown at the field level (FieldMessage)? Are destructive actions confirmed before execution (Dialog/ConfirmationCard)? Is there a way to undo or recover from mistakes? Are error states visually distinct? Do error messages use plain language and tell users what to do next? Are empty states handled gracefully?`},
+};
+
 const CATS=['AI & Agentic','Atlas (Chat UI)','Foundations & Components','Patterns','Accessibility'];
-const LOAD_MSGS=['Analyzing against Anvil2...','Checking component usage...','Evaluating AI patterns...','Scoring accessibility...','Applying design foundations...','Reviewing content patterns...'];
+const LOAD_MSGS_SCREENSHOT=['Analyzing against Anvil2...','Checking component usage...','Evaluating AI patterns...','Scoring accessibility...','Applying design foundations...'];
+const LOAD_MSGS_FIGMA=['Reading prototype URL...','Analyzing interaction flow...','Evaluating transitions & states...','Checking error recovery paths...','Scoring against Anvil2 patterns...'];
 
 let selectedDims=new Set(MODES.quick);
+
+function switchInputMode(mode){
+  inputMode=mode;
+  document.getElementById('tab-screenshot').classList.toggle('active', mode==='screenshot');
+  document.getElementById('tab-figma').classList.toggle('active', mode==='figma');
+  document.getElementById('screenshot-panel').classList.toggle('hidden', mode==='figma');
+  document.getElementById('figma-panel').classList.toggle('visible', mode==='figma');
+  const btn = document.getElementById('go');
+  btn.textContent = mode==='figma' ? 'Evaluate interactions →' : 'Evaluate against Anvil2 →';
+}
 
 function buildDimUI(){
   const container=document.getElementById('dims-container');
@@ -318,47 +396,32 @@ function scls(s){return s>=7?'hi':s>=4?'mi':'lo';}
 const COLS={hi:'#16A34A',mi:'#D97706',lo:'#DC2626'};
 
 async function run(){
+  if(inputMode==='figma') return runFigma();
   const dims=[...selectedDims];
   if(!dims.length){alert('Select at least one dimension.');return;}
   if(!imgB64){alert('Upload a screenshot first.');return;}
+
   const btn=document.getElementById('go');btn.disabled=true;
   document.getElementById('empty').style.display='none';
   document.getElementById('rout').style.display='none';
   document.getElementById('reset-btn').style.display='none';
   const ld=document.getElementById('ld');ld.classList.add('on');
   let mi=0;const lel=document.getElementById('ldmsg');
-  const iv=setInterval(()=>{mi=(mi+1)%LOAD_MSGS.length;lel.textContent=LOAD_MSGS[mi];},1600);
+  const iv=setInterval(()=>{mi=(mi+1)%LOAD_MSGS_SCREENSHOT.length;lel.textContent=LOAD_MSGS_SCREENSHOT[mi];},1600);
 
   const ctx=document.getElementById('ctx').value.trim();
   const criteria=dims.map(d=>`DIMENSION [${d}] — ${ALL_DIMS[d].label}:\n${ALL_DIMS[d].criteria}`).join('\n\n---\n\n');
 
-  const sys=`You are a senior design system critic applying the Anvil2 design system from ServiceTitan — a real enterprise design system for a public SaaS company.
-
-ANVIL2 SYSTEM KNOWLEDGE:
-- Principles: Consistency that scales, Efficient and sustainable, Built for everyone (accessibility core), Quality you can trust, Anchor the core enable the rest
-- Components: Button, Card, DataTable, Dialog, Drawer (slides right), Toast, Alert, TextField, SelectField, Checkbox, Radio, Switch, Stepper, Tabs, Toolbar, ToolbarFilters, SideNav, Pagination, Chip, Badge, Avatar, Breadcrumbs, Skeleton, Spinner, ProgressBar, Popover, Tooltip, Menu, Listbox, EditCard, InteractiveCard, SelectCard
-- Foundations: Design tokens for color/spacing/typography — NO hardcoded values ever
-- Embedded AI: Double-star AI mark (NOT single sparkle). Primary gradient default, monochrome for contrast issues only.
-- Atlas (@servicetitan/anvil2-ext-atlas): ChatWindow, Header, Footer, Content, MarkdownMessage, NotificationCard, SingleRecommendationCard, ConfirmationCard, SuggestionList, Toolbox
-- Assist V1: "Trust bridges — communicate WHAT, WHY, and HOW. These aren't just filler lines."
-- AXDS mental models: Outcome, Causal, Interactional
-
-Be calibrated. 5 = average real product UI. 8+ requires clear evidence. Reference specific Anvil2 components by name.
-
-Return ONLY valid JSON (no markdown):
-{"scores":{"<dim_id>":{"score":0-10,"summary":"2 specific observational sentences referencing Anvil2 components","checks":[{"label":"specific check","status":"pass|fail|warn","note":"one sentence"}]}},"overall":0-10,"top_recommendation":"Most impactful change referencing exact Anvil2 component or pattern.","signal":"One sentence on overall design system alignment.","dims_scored":["array of dim ids scored"]}`;
+  const sys=`You are a senior design system critic applying the Anvil2 design system from ServiceTitan. You know all Anvil2 components (Button, Card, DataTable, Dialog, Drawer, Toast, Alert, TextField, SelectField, Checkbox, Radio, Switch, Stepper, Tabs, Toolbar, ToolbarFilters, SideNav, Pagination, Chip, Badge, Skeleton, Spinner, ProgressBar, Popover, Tooltip, Menu, EditCard, InteractiveCard), foundations (tokens only, no hardcoded values), patterns, embedded AI (double-star mark), Atlas components, and AXDS mental models. Be calibrated: 5=average, 8+ needs evidence. Return ONLY valid JSON:
+{"scores":{"<dim_id>":{"score":0-10,"summary":"2 specific sentences referencing Anvil2 components","checks":[{"label":"check","status":"pass|fail|warn","note":"one sentence"}]}},"overall":0-10,"top_recommendation":"Most impactful change referencing exact Anvil2 component.","signal":"One sentence on design system alignment.","dims_scored":["dim ids"]}`;
 
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:imgType||'image/png',data:imgB64}},{type:'text',text:`Evaluate this UI screenshot.\n${ctx?'Context: '+ctx+'\n':''}\nScore these dimensions: ${dims.join(', ')}\n\nCriteria:\n${criteria}\n\nReturn only JSON.`}]}]})
-    });
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:imgType||'image/png',data:imgB64}},{type:'text',text:`Evaluate this UI.\n${ctx?'Context: '+ctx+'\n':''}\nScore: ${dims.join(', ')}\n\nCriteria:\n${criteria}\n\nReturn only JSON.`}]}]})});
     const data=await res.json();
     clearInterval(iv);ld.classList.remove('on');
     const raw=data.content.map(b=>b.text||'').join('');
     const result=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    renderResults(result,dims);
+    renderResults(result,dims,'screenshot');
   }catch(err){
     clearInterval(iv);ld.classList.remove('on');
     const out=document.getElementById('rout');
@@ -368,19 +431,93 @@ Return ONLY valid JSON (no markdown):
   btn.disabled=false;
 }
 
-function renderResults(result,dims){
+async function runFigma(){
+  const url=document.getElementById('figma-url').value.trim();
+  const flow=document.getElementById('figma-flow').value.trim();
+  const ctx=document.getElementById('figma-ctx').value.trim();
+  if(!url){alert('Paste a Figma prototype URL first.');return;}
+  if(!flow){alert('Describe the user flow so Claude can evaluate it accurately.');return;}
+
+  const btn=document.getElementById('go');btn.disabled=true;
+  document.getElementById('empty').style.display='none';
+  document.getElementById('rout').style.display='none';
+  document.getElementById('reset-btn').style.display='none';
+  const ld=document.getElementById('ld');ld.classList.add('on');
+  let mi=0;const lel=document.getElementById('ldmsg');
+  const iv=setInterval(()=>{mi=(mi+1)%LOAD_MSGS_FIGMA.length;lel.textContent=LOAD_MSGS_FIGMA[mi];},1600);
+
+  const criteria=Object.entries(INTERACTION_DIMS).map(([id,d])=>`DIMENSION [${id}] — ${d.label}:\n${d.criteria}`).join('\n\n---\n\n');
+
+  const sys=`You are a senior interaction designer and design system critic evaluating a Figma prototype against Anvil2 design system interaction patterns from ServiceTitan.
+
+You will be given a Figma prototype URL and a description of the user flow. Based on the URL structure, flow description, user context, and your knowledge of Anvil2 interaction patterns, evaluate the interaction design across four dimensions.
+
+ANVIL2 INTERACTION KNOWLEDGE:
+- Stepper: multi-step flows with clear progress
+- Dialog: interruptions requiring decision (not for simple confirmations)  
+- Drawer: slides from right, for detail panels and secondary content
+- Toast: transient feedback triggered by user actions only
+- Alert: persistent status messages
+- Skeleton: loading placeholders (not Spinner for content)
+- Spinner: processing states
+- ProgressBar: quantifiable progress (file upload, form completion)
+- FieldMessage: inline validation at field level
+- Empty States: explain purpose + next action
+- Confirmation pattern: for destructive or irreversible actions
+- Motion: purposeful, respects prefers-reduced-motion, reinforces spatial model
+
+Be honest and calibrated. Note that you are evaluating based on the described flow and URL context, not visual observation. Flag assumptions clearly.
+
+Return ONLY valid JSON:
+{"scores":{"flow":{"score":0-10,"summary":"2 sentences","checks":[{"label":"check","status":"pass|fail|warn","note":"one sentence"}]},"motion":{"score":0-10,"summary":"2 sentences","checks":[...]},"feedback":{"score":0-10,"summary":"2 sentences","checks":[...]},"errorhandling":{"score":0-10,"summary":"2 sentences","checks":[...]}},"overall":0-10,"top_recommendation":"Most impactful interaction design change, referencing specific Anvil2 component or pattern.","signal":"One sentence on interaction design maturity."}`;
+
+  const userMsg=`Figma prototype URL: ${url}
+
+User flow description: ${flow}
+
+${ctx?'User & context: '+ctx:''}
+
+Evaluate this prototype's interaction design across all four dimensions.
+
+${criteria}
+
+Return only JSON.`;
+
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1800,system:sys,messages:[{role:'user',content:userMsg}]})});
+    const data=await res.json();
+    clearInterval(iv);ld.classList.remove('on');
+    const raw=data.content.map(b=>b.text||'').join('');
+    const result=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    renderResults(result,Object.keys(INTERACTION_DIMS),'figma',url);
+  }catch(err){
+    clearInterval(iv);ld.classList.remove('on');
+    const out=document.getElementById('rout');
+    out.innerHTML=`<div style="font-size:11px;color:#DC2626;padding:8px">Analysis failed — check your connection and try again.</div>`;
+    out.style.display='flex';
+  }
+  btn.disabled=false;
+}
+
+function renderResults(result,dims,mode,figmaUrl){
   const out=document.getElementById('rout');out.innerHTML='';
   const oc=scls(result.overall);
-  const dimsScored=result.dims_scored||dims;
-  document.getElementById('rhead-badge').textContent=`${dimsScored.length} dimensions · Anvil2`;
+  const dimLabels = mode==='figma' ? INTERACTION_DIMS : ALL_DIMS;
+  document.getElementById('rhead-badge').textContent=mode==='figma'?'Interaction · Anvil2':`${dims.length} dimensions · Anvil2`;
+
+  if(mode==='figma' && figmaUrl){
+    const fb=document.createElement('div');
+    fb.innerHTML=`<div class="figma-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.7"/><rect x="1" y="5.5" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.7"/><rect x="5.5" y="1" width="3.5" height="3.5" rx="0.8" fill="white" opacity="0.7"/><circle cx="7.25" cy="7.25" r="1.75" fill="white" opacity="0.7"/></svg>Figma prototype · Interaction evaluation</div>`;
+    out.appendChild(fb);
+  }
 
   const ov=document.createElement('div');ov.className='overall-card';
-  ov.innerHTML=`<div class="oc-top"><div><div class="oc-label">Overall score</div><div class="oc-num" style="color:${COLS[oc]}">${result.overall}<span style="font-size:15px;color:#9CA3AF;font-weight:400">/10</span></div></div><div class="oc-signal">${result.signal}</div></div><div class="oc-bottom">${dimsScored.length} dimensions evaluated · ${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>`;
+  ov.innerHTML=`<div class="oc-top"><div><div class="oc-label">Overall score</div><div class="oc-num" style="color:${COLS[oc]}">${result.overall}<span style="font-size:15px;color:#9CA3AF;font-weight:400">/10</span></div></div><div class="oc-signal">${result.signal}</div></div><div class="oc-bottom">${dims.length} dimensions · ${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>`;
   out.appendChild(ov);
 
   dims.forEach(d=>{
     const s=result.scores[d];if(!s)return;
-    const c=scls(s.score);const dim=ALL_DIMS[d];if(!dim)return;
+    const c=scls(s.score);const dim=dimLabels[d];if(!dim)return;
     const card=document.createElement('div');card.className='scard';
     let gc='';
     if(s.checks&&s.checks.length){
